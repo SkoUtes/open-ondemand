@@ -1,6 +1,6 @@
 FROM centos:7
 RUN yum update -y && \
-    yum install centos-release-scl && \
+    yum install centos-release-scl -y && \
     yum install -y epel-release && \
     yum install -y supervisor centos-release-scl subscription-manager && \
     yum install -y wget && \
