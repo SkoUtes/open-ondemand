@@ -1,4 +1,4 @@
-FROM centos:7
+from centos:7
 RUN yum update -y && \
     yum install centos-release-scl -y && \
     yum install -y epel-release && \
@@ -8,6 +8,16 @@ RUN yum update -y && \
     yum install -y ondemand && \
     yum clean all
 
+# set up systemd
+RUN yum -y install systemd; yum clean all; \
+(cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*;
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
 # config file for ood-portal-generator
@@ -19,6 +29,9 @@ ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.
 
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
+
+# Add a cgroup volume
+VOLUME [ "/sys/fs/cgroup" ]
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
