@@ -12,9 +12,7 @@ RUN yum update -y && \
 RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
-RUN systemctl enable rh-ruby25
 RUN yum install -y rh-nodejs10
-RUN systemctl enable rh-nodejs10
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
@@ -29,4 +27,6 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
+RUN supervisorctl enable rh-ruby25 bash
+RUN supervisorctl enable rh-nodejs10 bash
 CMD ["/usr/sbin/init", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
