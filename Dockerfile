@@ -12,9 +12,9 @@ RUN yum update -y && \
 RUN yum install centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install rh-ruby25
-RUN systemctl enable rh-ruby25 bash
+RUN systemctl enable rh-ruby25
 RUN yum install rh-nodejs10
-RUN systemctl enable rh-nodejs10 bash
+RUN systemctl enable rh-nodejs10
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
