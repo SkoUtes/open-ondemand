@@ -9,11 +9,11 @@ RUN yum update -y && \
     yum clean all
 
 # Install Ruby 2.5 and Node.js 10
-RUN yum install centos-release-scl-rh
+RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
-RUN yum install rh-ruby25
+RUN yum install -y rh-ruby25
 RUN systemctl enable rh-ruby25
-RUN yum install rh-nodejs10
+RUN yum install -y rh-nodejs10
 RUN systemctl enable rh-nodejs10
 
 # isntall openid auth mod
