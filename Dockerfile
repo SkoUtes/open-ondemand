@@ -30,12 +30,16 @@ ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
-RUN mkdir -p /etc/selinux/targeted/contexts/
-RUN echo '<busconfig><selinux></selinux></busconfig>' > /etc/selinux/targeted/contexts/dbus_contexts
+# Set up Let's Encrypt inside of the container
 
+RUN yum install -y httpd && \
+    systemctl start httpd && \
+    systemctl enable httpd && \
+    yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
+    touch /var/www/ood/index.html
 
-# Add a cgroup volume
-VOLUME [ "/sys/fs/cgroup" ]
+RUN cat << EOF > /var/www/ood/index.html
+
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/usr/sbin/init", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
