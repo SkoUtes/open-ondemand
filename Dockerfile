@@ -8,6 +8,14 @@ RUN yum update -y && \
     yum install -y ondemand && \
     yum clean all
 
+# Install Ruby 2.5 and Node.js 10
+RUN yum install centos-release-scl-rh
+RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
+RUN yum install rh-ruby25
+RUN systemctl enable rh-ruby25 bash
+RUN yum install rh-nodejs10
+RUN systemctl enable rh-nodejs10 bash
+
 # set up systemd
 RUN yum -y install systemd; yum clean all; \
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
