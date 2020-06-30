@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# Sleep for a minute
-sleep 60
-
 # Start up Ruby
-supervisorctl scl enable rh-ruby25 bash
+scl enable rh-ruby25 bash
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start Ruby 2.5: $status"
@@ -15,7 +12,7 @@ elif [[ $status = 0 ]]; then
 fi
 
 # Start up Node.js
-supervisorctl scl enable rh-nodejs10 bash
+scl enable rh-nodejs10 bash
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start Node.js 10: $status"
