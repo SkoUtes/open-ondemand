@@ -14,11 +14,14 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
 
-# Copy in the wrapper_script
+# Copy in the wrapper scripts
 WORKDIR /
-COPY wrapper_script.sh .
-RUN chmod 700 wrapper_script.sh
-RUN /wrapper_script.sh
+COPY ruby.sh .
+COPY nodejs.sh .
+RUN chmod 700 ruby.sh
+RUN chmod 700 nodejs.sh
+RUN ./ruby.sh
+RUN ./nodejs.sh
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
