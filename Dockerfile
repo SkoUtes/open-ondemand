@@ -7,6 +7,7 @@ RUN yum update -y && \
     yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
+    
 
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
