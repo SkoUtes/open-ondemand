@@ -18,6 +18,7 @@ RUN yum install -y rh-nodejs10
 WORKDIR /
 COPY wrapper_script.sh .
 RUN chmod 700 wrapper_script.sh
+RUN ./wrapper_script.sh
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
