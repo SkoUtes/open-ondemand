@@ -14,6 +14,9 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
 
+# Copy in the wrapper_script
+COPY wrapper_script.sh .
+
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
 # config file for ood-portal-generator
@@ -27,6 +30,4 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
-RUN supervisorctl enable rh-ruby25 bash
-RUN supervisorctl enable rh-nodejs10 bash
-CMD ["/usr/sbin/init", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
+CMD ["/usr/sbin/init", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf", "./wrapper_script.sh"]
