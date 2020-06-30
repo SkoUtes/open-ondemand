@@ -18,6 +18,9 @@ RUN yum install -y rh-nodejs10
 COPY wrapper_script.sh .
 RUN chmod 700 wrapper_script.sh
 
+scl enable rh-ruby25 bash
+scl enable rh-nodejs10 bash
+
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
 # config file for ood-portal-generator
