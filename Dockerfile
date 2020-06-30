@@ -15,11 +15,9 @@ RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
 
 # Copy in the wrapper_script
+WORKKDIR /
 COPY wrapper_script.sh .
 RUN chmod 700 wrapper_script.sh
-
-scl enable rh-ruby25 bash
-scl enable rh-nodejs10 bash
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
