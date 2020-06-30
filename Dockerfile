@@ -7,7 +7,6 @@ RUN yum update -y && \
     yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
-    
 
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
@@ -37,4 +36,4 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
-CMD ["/bin/sh", "/ruby.sh", "/nodejs.sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf" ]
+CMD ["/bin/sh", "/ruby.sh", "/nodejs.sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
