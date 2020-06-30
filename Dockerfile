@@ -15,11 +15,13 @@ RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
 
 # Copy in the wrapper scripts
-WORKDIR /
+WORKDIR /root
 COPY ruby.sh .
 COPY nodejs.sh .
 RUN chmod 700 ruby.sh
 RUN chmod 700 nodejs.sh
+ADD ruby.sh /root/ruby.sh
+ADD nodejs.sh /root/nodejs.sh
 RUN ./ruby.sh
 RUN ./nodejs.sh
 
