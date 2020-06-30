@@ -22,6 +22,8 @@ RUN chmod 700 ruby.sh
 RUN chmod 700 nodejs.sh
 ADD ruby.sh /root/ruby.sh
 ADD nodejs.sh /root/nodejs.sh
+RUN chmod 700 ruby.sh
+RUN chmod 700 nodejs.sh
 RUN ./ruby.sh
 RUN ./nodejs.sh
 
