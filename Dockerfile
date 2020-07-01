@@ -18,8 +18,6 @@ RUN yum install -y rh-nodejs10
 WORKDIR /root
 COPY ruby.sh .
 COPY nodejs.sh .
-ADD ruby.sh /root/ruby.sh
-ADD nodejs.sh /root/nodejs.sh
 RUN chmod 700 ruby.sh
 RUN chmod 700 nodejs.sh
 
@@ -35,5 +33,5 @@ ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
-ADD supervisord.conf /etc/supervisord.conf
+ADD ruby.sh /root/ruby.sh
 CMD ["/bin/sh", "./root/ruby.sh"]
