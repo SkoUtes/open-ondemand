@@ -36,4 +36,4 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
-CMD ["/bin/sh", "/root/ruby.sh", "/root/nodejs.sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
+CMD ["/bin/sh", "/root/ruby.sh", "/root/nodejs.sh"]
