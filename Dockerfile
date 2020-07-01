@@ -20,8 +20,6 @@ COPY nodejs.sh /
 WORKDIR /
 RUN chmod +x ruby.sh
 RUN chmod +x nodejs.sh
-RUN /ruby.sh
-RUN /nodejs.sh
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
@@ -36,4 +34,6 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
+ADD /ruby.sh /etc/supervisord.conf
+ADD /nodejs.sh /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
