@@ -1,6 +1,10 @@
 #!/bin/sh
-
-# Start up Ruby and nodejs
+echo "===================================="
+echo "===================================="
+echo "ruby.sh is running now"
+echo "===================================="
+echo "===================================="
+# Enable nodejs10
 scl enable rh-ruby25 bash
 status=$?
 if [ $status -ne 0 ]; then

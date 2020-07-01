@@ -20,8 +20,8 @@ COPY nodejs.sh /
 WORKDIR /
 RUN chmod +x ruby.sh
 RUN chmod +x nodejs.sh
-RUN /ruby.sh
-RUN /nodejs.sh
+RUN ./ruby.sh
+RUN ./nodejs.sh
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
