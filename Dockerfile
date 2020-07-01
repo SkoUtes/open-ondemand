@@ -15,13 +15,13 @@ RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
 
 # Copy in the wrapper scripts
-COPY ruby.sh /root
-COPY nodejs.sh /root
-WORKDIR /root
+COPY ruby.sh /
+COPY nodejs.sh /
+WORKDIR /
 RUN chmod +x ruby.sh
 RUN chmod +x nodejs.sh
-RUN ruby.sh
-RUN nodejs.sh
+RUN /ruby.sh
+RUN /nodejs.sh
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
