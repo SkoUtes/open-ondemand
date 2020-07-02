@@ -3,16 +3,17 @@ RUN yum update -y && \
     yum install centos-release-scl -y && \
     yum install -y epel-release && \
     yum install -y supervisor centos-release-scl subscription-manager && \
-    yum install -y wget && \
-    yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
-    yum install -y ondemand && \
-    yum clean all
+    yum install -y wget
 
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
+
+RUN yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
+    yum install -y ondemand && \
+    yum clean all
 
 # Copy in the wrapper scripts
 RUN mkdir /root/scripts
@@ -21,13 +22,8 @@ COPY nodejs.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby.sh
 RUN chmod +x nodejs.sh
-ENV BASH_ENV="/root/scripts/ruby.sh" \
-    ENV="/root/scripts/ruby.sh" \
-    PROMPT_COMMAND=". /root/scripts/ruby.sh"
-ENV BASH_ENV="/root/scripts/nodejs.sh" \
-    ENV="/root/scripts/nodejs.sh" \
-    PROMPT_COMMAND=". /root/scripts/nodejs.sh"
-
+RUN ./ruby.sh
+RUN ./nodejs.sh
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
