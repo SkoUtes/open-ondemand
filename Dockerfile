@@ -17,6 +17,19 @@ RUN yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.n
     yum install -y ondemand && \
     yum clean all
 
+# Copy in the wrapper scripts
+RUN mkdir /root/scripts
+COPY ruby.sh /root/scripts
+COPY nodejs.sh /root/scripts
+WORKDIR /root/scripts
+RUN chmod +x ruby.sh
+RUN chmod +x nodejs.sh
+ENV BASH_ENV="/root/scripts" \
+    ENV="/root/scripts/ruby.sh" \
+    PROMPT_COMMAND=". /root/scripts/ruby.sh"
+    ENV="/root/scripts/nodejs.sh" \
+    PROMPT_COMMAND=". /root/scripts/nodejs.sh"
+
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
 # config file for ood-portal-generator
