@@ -26,8 +26,7 @@ RUN chmod +x ruby.sh
 RUN chmod +x nodejs.sh
 ENV BASH_ENV="/root/scripts" \
     ENV="/root/scripts/ruby.sh" \
-    PROMPT_COMMAND=". /root/scripts/ruby.sh"
-ENV BASH_ENV="/root/scripts" \
+    PROMPT_COMMAND=". /root/scripts/ruby.sh" \
     ENV="/root/scripts/nodejs.sh" \
     PROMPT_COMMAND=". /root/scripts/nodejs.sh"
 
