@@ -23,7 +23,8 @@ RUN chmod +x ruby.sh
 RUN chmod +x nodejs.sh
 ENV BASH_ENV="/root/scripts" \
     ENV="/root/scripts" \
-    PROMPT_COMMAND=". /root/scripts" 
+    PROMPT_COMMAND=". /root/scripts/ruby.sh"
+    PROMPT_COMMAND=". /root/scripts/nodejs.sh"
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
