@@ -11,3 +11,4 @@ if [ $status -ne 0 ]; then
   echo "Failed to start rh-ruby25: $status"
   exit $status
 fi
+unset BASH_ENV PROMPT_COMMAND ENV
