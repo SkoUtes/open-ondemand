@@ -10,20 +10,12 @@ RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
+RUN source scl_source enable rh-ruby25
+RUN source scl_source enable rh-nodejs10
 
 RUN yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
-
-# Copy in the wrapper scripts
-RUN mkdir /root/scripts
-COPY ruby.sh /root/scripts
-COPY nodejs.sh /root/scripts
-WORKDIR /root/scripts
-RUN chmod +x ruby.sh
-RUN chmod +x nodejs.sh
-RUN ./ruby.sh
-RUN ./nodejs.sh
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
