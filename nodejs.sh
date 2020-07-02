@@ -5,6 +5,7 @@ echo "nodejs.sh is running now"
 echo "===================================="
 echo "===================================="
 # Enable nodejs10
+source scl_source enable rh-ruby25
 source scl_source enable rh-nodejs10
 status=$?
 if [ $status -ne 0 ]; then
