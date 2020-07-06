@@ -10,8 +10,31 @@ RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
-RUN scl enable rh-ruby25 bash
-RUN scl enable rh-nodejs10 bash
+
+ENV RUBY_VERSION="${RUBY_MAJOR_VERSION}.${RUBY_MINOR_VERSION}" \
+    RUBY_SCL_NAME_VERSION="${RUBY_MAJOR_VERSION}${RUBY_MINOR_VERSION}"
+
+ENV RUBY_SCL="rh-ruby${RUBY_SCL_NAME_VERSION}" \
+    IMAGE_NAME="centos/ruby-${RUBY_SCL_NAME_VERSION}-centos7"
+
+RUN yum install -y centos-release-scl-rh && \
+    INSTALL_PKGS=" \
+${RUBY_SCL} \
+${RUBY_SCL}-ruby-devel \
+${RUBY_SCL}-rubygem-rake \
+${RUBY_SCL}-rubygem-bundler \
+" && \
+    yum install -y --setopt=tsflags=nodocs ${INSTALL_PKGS} && \
+    yum -y clean all --enablerepo='*' && \
+    rpm -V ${INSTALL_PKGS}
+
+
+
+RUN yum install -y centos-release-scl && \
+    INSTALL_PKGS="rh-ruby24 rh-ruby24-ruby-devel rh-ruby24-rubygem-rake rh-ruby24-rubygem-bundler" && \
+    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && rpm -V $INSTALL_PKGS && \
+    yum -y clean all --enablerepo='*'
+
 
 # Copy in the wrapper scripts
 RUN mkdir /root/scripts
