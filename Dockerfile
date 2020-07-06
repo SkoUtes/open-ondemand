@@ -1,4 +1,4 @@
-from centos/systemd
+from centos:7
 RUN yum update -y && \
     yum install centos-release-scl -y && \
     yum install -y epel-release && \
@@ -10,8 +10,8 @@ RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
-RUN source scl_source enable rh-ruby25
-RUN source scl_source enable rh-nodejs10
+RUN scl enable rh-ruby25 bash
+RUN scl enable rh-nodejs10 bash
 
 # Copy in the wrapper scripts
 RUN mkdir /root/scripts
