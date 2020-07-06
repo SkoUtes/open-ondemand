@@ -1,4 +1,4 @@
-from centos:7
+FROM centos/s2i-base-centos7
 RUN yum update -y && \
     yum install centos-release-scl -y && \
     yum install -y epel-release && \
