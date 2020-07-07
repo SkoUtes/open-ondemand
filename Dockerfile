@@ -45,7 +45,7 @@ RUN mkdir /root/scripts
 COPY ruby-node.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
-RUN /ruby-node.sh
+RUN ./ruby-node.sh
 
 RUN yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
     yum install -y ondemand && \
