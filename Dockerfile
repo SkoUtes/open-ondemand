@@ -48,9 +48,9 @@ RUN chmod +x ruby-node.sh
 ENV BASH_ENV="/root/scripts/ruby-node.sh" \
     ENV="/root/scripts/ruby-node.sh" \
     PROMPT_COMMAND=". /root/scripts/ruby-node.sh" \
-    /ruby-node.sh
 
-RUN yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
+RUN /ruby-node.sh \
+    yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
 
