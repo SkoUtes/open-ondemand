@@ -6,10 +6,6 @@ RUN yum update -y && \
     yum install -y wget
 
 # Install Ruby 2.5 and Node.js 10
-RUN yum install -y centos-release-scl-rh
-RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
-RUN yum install -y rh-ruby25
-RUN yum install -y rh-nodejs10
 
 ENV RUBY_MAJOR_VERSION=2 \
     RUBY_MINOR_VERSION=5
@@ -49,7 +45,7 @@ RUN mkdir /root/scripts
 COPY ruby-node.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
-ENV BASH_ENV="/root/scripts" \
+ENV BASH_ENV="/root/scripts/ruby-node.sh" \
     ENV="/root/scripts/ruby-node.sh" \
     PROMPT_COMMAND=". /root/scripts/ruby-node.sh"
 
