@@ -3,7 +3,8 @@ RUN yum update -y && \
     yum install centos-release-scl -y && \
     yum install -y epel-release && \
     yum install -y supervisor centos-release-scl subscription-manager && \
-    yum install -y wget
+    yum install -y wget \
+    yum install -y python3
 
 # Install Ruby 2.5 and Node.js 10
 
@@ -50,6 +51,9 @@ RUN ./ruby-node.sh
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
+
+# Copy in listener.py
+COPY listener.py /opt/rh/httpd24/root/usr/sbin
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
