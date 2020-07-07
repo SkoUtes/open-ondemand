@@ -52,11 +52,6 @@ RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.n
     yum install -y ondemand && \
     yum clean all
 
-# Copy in listener.py
-COPY listener.py /opt/rh/httpd24/root/usr/sbin
-RUN chmod +x /opt/rh/httpd24/root/usr/sbin/listener.py
-RUN chown root /opt/rh/httpd24/root/usr/sbin/listener.py
-
 # install openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
 # config file for ood-portal-generator
@@ -70,4 +65,4 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
-CMD ["/bin/sh", "-c -l", "/usr/bin/supervisord -c -l /etc/supervisord.conf"]
+CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]

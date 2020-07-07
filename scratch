@@ -1,0 +1,29 @@
+# RUN yum install -y centos-release-scl-rh
+# RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
+# RUN yum install -y rh-ruby25
+# RUN yum install -y rh-nodejs10
+
+# RUN source scl_source enable rh-ruby25
+# RUN source scl_source enable rh-nodejs10
+
+
+# [eventlistener:inorder]
+# command=/opt/rh/httpd24/root/usr/sbin/listener.py
+# autostart=true
+# events=PROCESS_STATE
+
+# startsecs=0
+# autorestart=false
+# austostart=false
+# startinorder=true
+# startnextafter=exited
+
+# startsecs=0
+# autorestart=false
+# autostart=false
+# startinorder=true
+
+# # Copy in listener.py
+# COPY listener.py /opt/rh/httpd24/root/usr/sbin
+# RUN chmod +x /opt/rh/httpd24/root/usr/sbin/listener.py
+# RUN chown root /opt/rh/httpd24/root/usr/sbin/listener.py
