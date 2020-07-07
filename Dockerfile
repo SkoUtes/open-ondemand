@@ -47,7 +47,7 @@ WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
 RUN ./ruby-node.sh
 
-RUN yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.7-1.noarch.rpm && \
+RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
 
