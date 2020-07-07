@@ -54,6 +54,7 @@ RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.n
 
 # Copy in listener.py
 COPY listener.py /opt/rh/httpd24/root/usr/sbin
+RUN chmod +x /opt/rh/httpd24/root/usr/sbin/listener.py
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
