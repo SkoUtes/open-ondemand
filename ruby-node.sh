@@ -5,8 +5,7 @@ echo "rh-ruby25 and nodejs10 are now running"
 echo "===================================="
 echo "===================================="
 # Enable nodejs10
-source scl_source enable rh-ruby25
-source scl_source enable rh-nodejs10
+scl enable rh-ruby25 rh-nodejs10 bash
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start ruby and node.js: $status"
