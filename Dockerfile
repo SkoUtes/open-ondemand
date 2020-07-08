@@ -49,7 +49,7 @@ RUN chmod +x ruby-node.sh
 RUN ./ruby-node.sh
 
 # Replace httpd-scl-wrapper script
-RUN mkdir /opt/rh/httpd24/root/usr/sbin
+RUN chown -R root /opt/rh/httpd24/root/usr
 RUN rm -f /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
 COPY httpd-scl-wrapper /opt/rh/httpd24/root/usr/sbin
 WORKDIR /opt/rh/httpd24/root/usr/sbin
