@@ -41,19 +41,14 @@ RUN yum install -y centos-release-scl-rh && \
     rpm -V $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*'
 
-# Copy in the wrapper script
+# Copy in the wrapper scripts
 RUN mkdir /root/scripts
 COPY ruby-node.sh /root/scripts
+COPY sleeper.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
+RUN chmod +x sleeper.sh
 RUN ./ruby-node.sh
-
-# Replace httpd-scl-wrapper script
-RUN chown -R root /opt/rh/httpd24/root/usr
-RUN rm -f /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
-COPY httpd-scl-wrapper /opt/rh/httpd24/root/usr/sbin
-WORKDIR /opt/rh/httpd24/root/usr/sbin
-RUN chmod +x httpd-scl-wrapper
 
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
