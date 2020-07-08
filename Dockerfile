@@ -15,9 +15,9 @@ COPY node-v10.21.0-linux-x64.tar.gz /root/packages
 RUN tar xzf ruby-2.5.8.tar.gz
 RUN tar xzf node-v10.21.0-linux-x64.tar.gz
 WORKDIR /root/packages/ruby-2.5.8
-RUN ./configure \
-    make
-    make install
+RUN ./configure
+RUN make
+RUN make install
 
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
