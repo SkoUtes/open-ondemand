@@ -51,7 +51,9 @@ RUN ./ruby-node.sh
 # Replace httpd-scl-wrapper script
 RUN rm -f /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
 COPY httpd-scl-wrapper /opt/rh/httpd24/root/usr/sbin
-RUN chmod +x /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
+WORKDIR /opt/rh/httpd24/root/usr/sbin
+RUN chmod +x httpd-scl-wrapper
+WORKDIR /root
 
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
