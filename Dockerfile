@@ -44,10 +44,10 @@ RUN yum install -y centos-release-scl-rh && \
 # Copy in the wrapper scripts
 RUN mkdir /root/scripts
 COPY ruby-node.sh /root/scripts
-COPY sleeper.sh /root/scripts
+COPY setup.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
-RUN chmod +x sleeper.sh
+RUN chmod +x setup.sh
 RUN ./ruby-node.sh
 
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
