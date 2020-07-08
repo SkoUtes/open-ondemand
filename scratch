@@ -27,3 +27,9 @@
 # COPY listener.py /opt/rh/httpd24/root/usr/sbin
 # RUN chmod +x /opt/rh/httpd24/root/usr/sbin/listener.py
 # RUN chown root /opt/rh/httpd24/root/usr/sbin/listener.py
+
+
+# [program:apache]
+# command=/opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper -D FOREGROUND
+# priority=999
+# autostart=false
