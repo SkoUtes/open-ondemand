@@ -61,10 +61,10 @@ RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Edit httpd-scl-wrapper script
 WORKDIR /opt/rh/httpd24/root/usr/sbin
-RUN rm -f /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
-COPY httpd-scl-wrapper /opt/rh/httpd24/root/usr/sbin
-RUN chmod +x httpd-scl-wrapper
-RUN chown apache httpd-scl-wrapper
+# RUN rm -f /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
+# COPY httpd-scl-wrapper /opt/rh/httpd24/root/usr/sbin
+# RUN chmod +x httpd-scl-wrapper
+# RUN chown apache httpd-scl-wrapper
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]

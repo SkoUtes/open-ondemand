@@ -121,3 +121,7 @@ RUN mkdir /root/scripts
 COPY ruby-node.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
+
+
+# Enable ruby and nodejs10
+scl enable rh-ruby25 rh-nodejs10 bash

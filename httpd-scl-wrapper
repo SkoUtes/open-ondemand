@@ -1,6 +1,4 @@
 #!/bin/sh
-# Enable ruby and nodejs10
-scl enable rh-ruby25 rh-nodejs10 bash
 # We have to re-enable SCL environment, because /sbin/service
 # clears almost all environment variables.
 # Since X_SCLS is cleared as well, we lose information about other
