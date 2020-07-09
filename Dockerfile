@@ -12,6 +12,9 @@ COPY ruby-node.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
 
+# install openid auth mod
+RUN yum install -y httpd24-mod_auth_openidc
+
 # Edit httpd-scl-wrapper script
 WORKDIR /opt/rh/httpd24/root/usr/sbin
 RUN rm httpd-scl-wrapper
@@ -56,8 +59,6 @@ RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.n
     yum install -y ondemand && \
     yum clean all
 
-# install openid auth mod
-RUN yum install -y httpd24-mod_auth_openidc
 # config file for ood-portal-generator
 ADD ood_portal.yml /etc/ood/config/ood_portal.yml
 # Then build and install the new Apache configuration file with
