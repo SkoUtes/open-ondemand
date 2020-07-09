@@ -11,13 +11,50 @@ RUN yum update -y && \
 RUN mkdir /root/packages
 WORKDIR /root/packages
 COPY ruby-2.5.8.tar.gz /root/packages
-COPY node-v10.21.0.tar.gz /root/packages
 RUN tar xzf ruby-2.5.8.tar.gz
-RUN tar xzf node-v10.21.0.tar.gz
 WORKDIR /root/packages/ruby-2.5.8
 RUN ./configure
 RUN make
 RUN make install
+RUN mkdir /root/scripts
+WORKDIR /root/scripts
+COPY ruby-node.sh /root/scripts
+RUN chmod +x ruby-node.sh
+
+# Enable and install software collections for ruby and node
+
+ENV RUBY_MAJOR_VERSION=2 \
+    RUBY_MINOR_VERSION=5
+
+ENV RUBY_VERSION="${RUBY_MAJOR_VERSION}.${RUBY_MINOR_VERSION}" \
+    RUBY_SCL_NAME_VERSION="${RUBY_MAJOR_VERSION}${RUBY_MINOR_VERSION}"
+
+ENV RUBY_SCL="rh-ruby${RUBY_SCL_NAME_VERSION}" \
+    IMAGE_NAME="centos/ruby-${RUBY_SCL_NAME_VERSION}-centos7"
+
+RUN yum install -y centos-release-scl-rh && \
+    INSTALL_PKGS=" \
+${RUBY_SCL} \
+${RUBY_SCL}-ruby-devel \
+${RUBY_SCL}-rubygem-rake \
+${RUBY_SCL}-rubygem-bundler \
+" && \
+    yum install -y --setopt=tsflags=nodocs ${INSTALL_PKGS} && \
+    yum -y clean all --enablerepo='*' && \
+    rpm -V ${INSTALL_PKGS}
+
+ENV NODEJS_VERSION=10 \
+    NPM_RUN=start \
+    NAME=nodejs \
+    NPM_CONFIG_PREFIX=$HOME/.npm-global
+
+RUN yum install -y centos-release-scl-rh && \
+    ( [ "rh-${NAME}${NODEJS_VERSION}" != "${NODEJS_SCL}" ] && yum remove -y ${NODEJS_SCL}\* || : ) && \
+    INSTALL_PKGS="rh-nodejs${NODEJS_VERSION} rh-nodejs${NODEJS_VERSION}-npm rh-nodejs${NODEJS_VERSION}-nodejs-nodemon nss_wrapper" && \
+    ln -s /usr/lib/node_modules/nodemon/bin/nodemon.js /usr/bin/nodemon && \
+    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    yum -y clean all --enablerepo='*'
 
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
