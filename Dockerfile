@@ -64,7 +64,6 @@ WORKDIR /opt/rh/httpd24/root/usr/sbin
 RUN rm -f /opt/rh/httpd24/root/usr/sbinhttpd-scl-wrapper
 COPY httpd-scl-wrapper /opt/rh/httpd24/root/usr/sbin
 RUN chmod +x httpd-scl-wrapper
-RUN chgrp apache /opt/rh/httpd24/root/etc/usr/sbin/httpd-scl-wrapper
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
