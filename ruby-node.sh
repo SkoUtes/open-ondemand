@@ -15,3 +15,11 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 unset BASH_ENV PROMPT_COMMAND ENV
+sleep 5
+. /opt/rh/httpd24/service-environment
+    for sclname in $HTTPD24_HTTPD_SCLS_ENABLED ; do
+        . /opt/rh/$sclname/enable
+        export X_SCLS="$X_SCLS $sclname"
+    done
+
+    exec /opt/rh/httpd24/root/usr/sbin/httpd "$@"
