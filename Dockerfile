@@ -1,4 +1,4 @@
-FROM centos/s2i-base-centos7
+FROM centos:7
 RUN yum update -y && \
     yum install centos-release-scl -y && \
     yum install -y epel-release && \
@@ -11,6 +11,11 @@ RUN mkdir /root/scripts
 COPY ruby-node.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
+
+# Edit httpd-scl-wrapper script
+WORKDIR /opt/rh/httpd24/root/usr/sbin
+RUN rm httpd-scl-wrapper
+COPY ruby-node.sh .
 
 # Enable and install software collections for ruby and node
 
