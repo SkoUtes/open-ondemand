@@ -65,7 +65,6 @@ RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Edit httpd-scl-wrapper script
 WORKDIR /opt/rh/httpd24/root/usr/sbin
-RUN rm httpd-scl-wrapper
 COPY ruby-node.sh /opt/rh/httpd24/root/usr/sbin
 RUN chmod +x ruby-node.sh
 
