@@ -61,7 +61,7 @@ RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Edit httpd-scl-wrapper script
 WORKDIR /opt/rh/httpd24/root/usr/sbin
-RUN rm httpd-scl-wrapper
+RUN rm -f /opt/rh/httpd24/root/usr/sbinhttpd-scl-wrapper
 COPY httpd-scl-wrapper /opt/rh/httpd24/root/usr/sbin
 RUN chmod +x httpd-scl-wrapper
 RUN chgrp apache /opt/rh/httpd24/root/etc/usr/sbin/httpd-scl-wrapper
