@@ -6,20 +6,28 @@ RUN yum update -y && \
     yum install -y wget \
     yum install -y make
 
-# Install Ruby 2.5 and Node.js 10
+# Edit the supervisord file 
+RUN sed '7,13d' /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
+RUN cat << EOF>> /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
+    set ENV BASH_ENV="/root/scripts/ruby-node.sh" \
+        ENV="/root/scripts/ruby-node.sh" \
+        PROMPT_COMMAND=". /root/scripts/ruby-node.sh"
+    scl enable rh-ruby25 rh-nodejs10 bash
+    status=$?
+    if [ $status -ne 0 ]; then
+        echo "Failed to start ruby and node.js: $status"
+        exit $status
+    fi
+    unset BASH_ENV PROMPT_COMMAND ENV
+    . /opt/rh/httpd24/service-environment
+    for sclname in $HTTPD24_HTTPD_SCLS_ENABLED ; do
+        . /opt/rh/$sclname/enable
+        export X_SCLS="$X_SCLS $sclname"
+    done
 
-RUN mkdir /root/packages
-WORKDIR /root/packages
-COPY ruby-2.5.8.tar.gz /root/packages
-RUN tar xzf ruby-2.5.8.tar.gz
-WORKDIR /root/packages/ruby-2.5.8
-RUN ./configure
-RUN make
-RUN make install
-RUN mkdir /root/scripts
-WORKDIR /root/scripts
-COPY ruby-node.sh /root/scripts
-RUN chmod +x ruby-node.sh
+    exec /opt/rh/httpd24/root/usr/sbin/httpd "$@"
+    EOF
+
 
 # Enable and install software collections for ruby and node
 
