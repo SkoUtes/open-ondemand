@@ -8,25 +8,23 @@ RUN yum update -y && \
 
 # Edit the supervisord file 
 RUN sed '7,13d' /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
-RUN cat << EOF>> /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
-    set ENV BASH_ENV="/root/scripts/ruby-node.sh" \
-        ENV="/root/scripts/ruby-node.sh" \
-        PROMPT_COMMAND=". /root/scripts/ruby-node.sh"
-    scl enable rh-ruby25 rh-nodejs10 bash
-    status=$?
-    if [ $status -ne 0 ]; then
-        echo "Failed to start ruby and node.js: $status"
-        exit $status
-    fi
-    unset BASH_ENV PROMPT_COMMAND ENV
-    . /opt/rh/httpd24/service-environment
-    for sclname in $HTTPD24_HTTPD_SCLS_ENABLED ; do
-        . /opt/rh/$sclname/enable
-        export X_SCLS="$X_SCLS $sclname"
-    done
-
-    exec /opt/rh/httpd24/root/usr/sbin/httpd "$@"
-    EOF
+RUN echo 'set ENV BASH_ENV="/root/scripts/ruby-node.sh" \\n\
+        ENV="/root/scripts/ruby-node.sh" \\n\\n\
+        PROMPT_COMMAND=". /root/scripts/ruby-node.sh"\n\
+    scl enable rh-ruby25 rh-nodejs10 bash\n\
+    status=$?\n\
+    if [ $status -ne 0 ]; then\n\
+        echo "Failed to start ruby and node.js: $status"\n\
+        exit $status\n\
+    fi\n\
+    unset BASH_ENV PROMPT_COMMAND ENV\n\
+    . /opt/rh/httpd24/service-environment\n\
+    for sclname in $HTTPD24_HTTPD_SCLS_ENABLED ; do\n\
+        . /opt/rh/$sclname/enable\n\
+        export X_SCLS="$X_SCLS $sclname"\n\
+    done\n\
+\n\
+    exec /opt/rh/httpd24/root/usr/sbin/httpd "$@"\n'\
 
 
 # Enable and install software collections for ruby and node
