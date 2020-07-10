@@ -67,8 +67,8 @@ RUN chmod +x ruby-node.sh
 
 # Edit httpd-scl-wrapper script
 WORKDIR /opt/rh/httpd24/root/usr/sbin
-RUN sed '1,13d' httpd-scl-wrapper
-RUN echo $'[httpd-scl-wrapper] \n\
+RUN sed '1,13d' /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
+RUN echo ' \n\
 #!/bin/sh \n\
 scl enable rh-ruby25 rh-nodejs10 bash \n\
 # We have to re-enable SCL environment, because /sbin/service \n\
@@ -81,7 +81,8 @@ for sclname in $HTTPD24_HTTPD_SCLS_ENABLED ; do \n\
     export X_SCLS="$X_SCLS $sclname" \n\
 done \n\
  \n\
-exec /opt/rh/httpd24/root/usr/sbin/httpd "$@"'
+exec /opt/rh/httpd24/root/usr/sbin/httpd "$@" ' >> /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
+
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
