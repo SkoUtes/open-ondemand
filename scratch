@@ -125,3 +125,6 @@ RUN chmod +x ruby-node.sh
 
 # Enable ruby and nodejs10
 scl enable rh-ruby25 rh-nodejs10 bash
+
+
+RUN sed -i 's/.*# We have to re-enable SCL environment, because.*/scl enable rh-ruby25 rh-nodejs10 bash/g' httpd-scl-wrapper

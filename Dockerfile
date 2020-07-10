@@ -59,15 +59,11 @@ ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
-# Copy in the wrapper script
+## Copy in the wrapper script
 RUN mkdir /root/scripts
 COPY ruby-node.sh /root/scripts
 WORKDIR /root/scripts
 RUN chmod +x ruby-node.sh
-
-# Edit httpd-scl-wrapper script
-WORKDIR /opt/rh/httpd24/root/usr/sbin
-RUN sed -i 's/.*# We have to re-enable SCL environment, because.*/scl enable rh-ruby25 rh-nodejs10 bash/g' httpd-scl-wrapper
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
