@@ -59,6 +59,12 @@ ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
+# Copy in the wrapper script
+RUN mkdir /root/scripts
+COPY ruby-node.sh /root/scripts
+WORKDIR /root/scripts
+RUN chmod +x ruby-node.sh
+
 # Edit httpd-scl-wrapper script
 WORKDIR /opt/rh/httpd24/root/usr/sbin
 # RUN rm -f /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper

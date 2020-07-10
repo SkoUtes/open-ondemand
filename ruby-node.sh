@@ -15,3 +15,5 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 unset BASH_ENV PROMPT_COMMAND ENV
+sleep 5
+command=/opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper -D FOREGROUND
