@@ -1,4 +1,5 @@
 #!/bin/sh
+sleep 20
 # We have to re-enable SCL environment, because /sbin/service
 # clears almost all environment variables.
 # Since X_SCLS is cleared as well, we lose information about other
