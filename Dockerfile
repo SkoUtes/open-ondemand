@@ -67,22 +67,7 @@ RUN chmod +x ruby-node.sh
 
 # Edit httpd-scl-wrapper script
 WORKDIR /opt/rh/httpd24/root/usr/sbin
-RUN sed '1,13d' /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
-RUN echo ' \n\
-#!/bin/sh \n\
-scl enable rh-ruby25 rh-nodejs10 bash \n\
-# We have to re-enable SCL environment, because /sbin/service \n\
-# clears almost all environment variables. \n\
-# Since X_SCLS is cleared as well, we lose information about other \n\
-# collections enabled. \n\
-. /opt/rh/httpd24/service-environment \n\
-for sclname in $HTTPD24_HTTPD_SCLS_ENABLED ; do \n\
-    . /opt/rh/$sclname/enable \n\
-    export X_SCLS="$X_SCLS $sclname" \n\
-done \n\
- \n\
-exec /opt/rh/httpd24/root/usr/sbin/httpd "$@" ' >> /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
-
+RUN sed -i 's/.*# We have to re-enable SCL environment, because.*/scl enable rh-ruby25 rh-nodejs10 bash/g' httpd-scl-wrapper
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
