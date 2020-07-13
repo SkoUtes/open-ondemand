@@ -1,4 +1,4 @@
-FROM centos/ruby-25-centos7
+FROM centos:7
 RUN yum update -y && \
     yum install centos-release-scl -y && \
     yum install -y epel-release && \
