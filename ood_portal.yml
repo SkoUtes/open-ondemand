@@ -19,3 +19,7 @@
     #     oidc_uri: '/oidc'
     # Default: null (disable OpenID Connect support)
     oidc_uri: '/oidc'
+
+    # Set up user mapping
+    user_map_cmd: '/opt/ood/ood_auth_map/bin/ood_auth_map.regex'
+    user_env: 'REMOTE_USER'
