@@ -4,7 +4,13 @@
     # NB: Be sure the appropriate Apache module is installed for this
     # Default: (see below, uses basic auth with an htpasswd file)
     auth:
-      - 'AuthType openid-connect'
+      - 'AuthType Basic'
+      - 'AuthName "private"'
+      - 'AuthBasicProvider ldap'
+      - 'AuthLDAPURL "ldaps://openldap.my_center.edu:636/ou=People,ou=hpc,o=my_center?uid"'
+      - 'AuthLDAPGroupAttribute memberUid'
+      - 'AuthLDAPGroupAttributeIsDN off'
+      - 'RequestHeader unset Authorization'
       - 'Require valid-user'
     
     # Redirect user to the following URI when accessing logout URI
