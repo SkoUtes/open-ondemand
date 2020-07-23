@@ -7,9 +7,11 @@
       - 'AuthType Basic'
       - 'AuthName "private"'
       - 'AuthBasicProvider ldap'
-      - 'AuthLDAPURL "ldaps://openldap.my_center.edu:636/ou=People,ou=hpc,o=my_center?uid"'
-      - 'AuthLDAPGroupAttribute memberUid'
+      - 'AuthLDAPURL "ldaps://ldap.ad.utah.edu:636/ou=People,dc=ad,dc=utah,dc=edu?sAMAccountName" SSL'
+      - 'AuthLDAPGroupAttribute cn'
       - 'AuthLDAPGroupAttributeIsDN off'
+      - 'AuthLDAPBindDN "cn=chpc atlassian,ou=services,ou=administration,dc=ad,dc=utah,dc=edu"'
+      - 'AuthLDAPBindPassword '
       - 'RequestHeader unset Authorization'
       - 'Require valid-user'
     
