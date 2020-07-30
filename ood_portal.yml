@@ -4,7 +4,12 @@
     # NB: Be sure the appropriate Apache module is installed for this
     # Default: (see below, uses basic auth with an htpasswd file)
     auth:
+<<<<<<< HEAD
 
+=======
+      - 'AuthType openid-connect'
+      - 'Require valid-user'
+>>>>>>> parent of 74f657a... Adding LDAP support
     
     # Redirect user to the following URI when accessing logout URI
     # Example:
