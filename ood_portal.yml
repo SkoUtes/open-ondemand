@@ -5,9 +5,19 @@
     # Default: (see below, uses basic auth with an htpasswd file)
     auth:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
       - 'AuthType openid-connect'
+=======
+      - 'AuthType Basic'
+      - 'AuthName "private"'
+      - 'AuthBasicProvider ldap'
+      - 'AuthLDAPURL "ldaps://openldap.my_center.edu:636/ou=People,ou=hpc,o=my_center?uid"'
+      - 'AuthLDAPGroupAttribute memberUid'
+      - 'AuthLDAPGroupAttributeIsDN off'
+      - 'RequestHeader unset Authorization'
+>>>>>>> parent of 7512785... Update ood_portal.yml
       - 'Require valid-user'
 >>>>>>> parent of 74f657a... Adding LDAP support
     
