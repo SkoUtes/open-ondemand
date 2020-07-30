@@ -53,7 +53,6 @@ RUN yum install -y httpd24-mod_auth_openidc
 ADD ood_portal.yml /etc/ood/config/ood_portal.yml
 # Then build and install the new Apache configuration file with
 RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
-RUN chmod 700 /etc/ood/config/ood_portal.yml
 # FIX: Contains secret values
 ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
