@@ -14,5 +14,3 @@ if [ $status -ne 0 ]; then
   echo "Failed to start ruby and node.js: $status"
   exit $status
 fi
-unset BASH_ENV PROMPT_COMMAND ENV
-./opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper
