@@ -14,7 +14,6 @@ RUN yum install -y rh-nodejs10
 COPY ruby-node.sh /root
 WORKDIR /root
 RUN chmod +x ruby-node.sh
-RUN ./ruby-node.sh
 
 # Install OnDemand
 RUN yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm && \

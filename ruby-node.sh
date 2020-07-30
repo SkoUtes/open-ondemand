@@ -5,9 +5,6 @@ echo "rh-ruby25 and nodejs10 are now running"
 echo "===================================="
 echo "===================================="
 # Enable nodejs10
-set ENV BASH_ENV="/root/scripts/ruby-node.sh" \
-    ENV="/root/scripts/ruby-node.sh" \
-    PROMPT_COMMAND=". /root/scripts/ruby-node.sh"
 scl enable ondemand bash
 status=$?
 if [ $status -ne 0 ]; then
