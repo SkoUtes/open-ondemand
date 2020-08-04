@@ -4,9 +4,8 @@ RUN yum update -y && \
     yum install -y supervisor centos-release-scl subscription-manager && \
     yum install -y wget 
 
-RUN yum install -y sssd && \
-    yum install -y openldap && \ 
-    yum install -y authconfig
+RUN yum install -y sssd authconfig openldap && \
+    yum clean all
 COPY sssd.conf /etc/sssd
 RUN chown root:root /etc/sssd/sssd.conf
 RUN chmod 600 /etc/sssd/sssd.conf
