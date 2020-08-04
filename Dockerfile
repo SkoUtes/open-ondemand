@@ -7,6 +7,10 @@ RUN yum update -y && \
 RUN yum install -y sssd && \
     yum install -y openldap && \ 
     yum install -y authconfig
+COPY sssd.conf /etc/sssd
+RUN chown root /etc/sssd/sssd.conf
+RUN chmod 0600 /etc/sssd/sssd.conf
+RUN authconfig --enablesssdauth --enablesssd --updateall
 
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
@@ -38,5 +42,4 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
-ADD sssd-service.conf /etc/supervisord.d/sssd-service.conf
-CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf -c "]
+CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
