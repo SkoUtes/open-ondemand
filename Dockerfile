@@ -8,8 +8,8 @@ RUN yum install -y sssd && \
     yum install -y openldap && \ 
     yum install -y authconfig
 COPY sssd.conf /etc/sssd
-RUN chown root /etc/sssd/sssd.conf
-RUN chmod 0600 /etc/sssd/sssd.conf
+RUN chown root:root /etc/sssd/sssd.conf
+RUN chmod 600 /etc/sssd/sssd.conf
 RUN authconfig --enablesssdauth --enablesssd --updateall
 
 # Install Ruby 2.5 and Node.js 10
