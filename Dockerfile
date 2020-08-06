@@ -9,7 +9,7 @@ RUN yum install -y sssd authconfig openldap && \
 COPY sssd.conf /etc/sssd
 RUN chown root:root /etc/sssd/sssd.conf
 RUN chmod 600 /etc/sssd/sssd.conf
-RUN authconfig --update --enablesssd --enablesssdauth --enableldap --enableldapauth --enablemkhomedir
+RUN authconfig --update --enablesssd --enablesssdauth --enableldap --enableldapauth --enablekrb5 --enablemkhomedir
 
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
