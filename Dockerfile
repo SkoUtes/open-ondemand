@@ -22,6 +22,10 @@ COPY ruby-node.sh /root
 WORKDIR /root
 RUN chmod +x ruby-node.sh
 
+# Install Oddjob
+RUN yum install oddjob -y
+RUN yum install oddjob-mkhomedir -y
+
 # Install OnDemand
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
