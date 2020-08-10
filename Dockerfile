@@ -4,7 +4,7 @@ RUN yum update -y && \
     yum install -y supervisor centos-release-scl subscription-manager openssh-server && \
     yum install -y wget 
 
-RUN yum install -y sssd authconfig openldap && \
+RUN yum install -y sssd authconfig openldap oddjob-mkhomedir && \
     yum clean all
 COPY sssd.conf /etc/sssd
 RUN chown root:root /etc/sssd/sssd.conf
