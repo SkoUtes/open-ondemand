@@ -22,11 +22,6 @@ COPY ruby-node.sh /root
 WORKDIR /root
 RUN chmod +x ruby-node.sh
 
-# Install Oddjob and other tools
-RUN yum install oddjob oddjob-mkhomedir krb5-libs krb5-workstation openldap-clients -y
-RUN yum install sssd-dbus openldap* -y
-
-
 # Install OnDemand
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
