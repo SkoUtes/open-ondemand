@@ -1,7 +1,7 @@
 FROM centos:7
 RUN yum update -y && \
     yum install -y epel-release && \
-    yum install -y supervisor centos-release-scl subscription-manager && \
+    yum install -y supervisor centos-release-scl subscription-manager openssh-server && \
     yum install -y wget 
 
 RUN yum install -y sssd authconfig openldap && \
@@ -9,7 +9,7 @@ RUN yum install -y sssd authconfig openldap && \
 COPY sssd.conf /etc/sssd
 RUN chown root:root /etc/sssd/sssd.conf
 RUN chmod 600 /etc/sssd/sssd.conf
-RUN authconfig --update --enablesssd --enablesssdauth --enableldap --enableldapauth --enablekrb5 --enablemkhomedir
+RUN authconfig --update --enablesssd --enablesssdauth --enablemkhomedir
 
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
