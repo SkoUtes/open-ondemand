@@ -23,7 +23,7 @@ WORKDIR /root
 RUN chmod +x ruby-node.sh
 
 # Install Oddjob and other tools
-RUN yum install oddjob oddjob-mkhomedir reamld adcli samba-common samba-common-tools kerb5-workstation openldap-clients policycoreutils-python -y
+RUN yum install oddjob oddjob-mkhomedir krb5-libs krb5-workstation openldap-clients -y
 RUN yum install sssd-dbus openldap* -y
 
 
