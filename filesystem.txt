@@ -1,0 +1,29 @@
+#################### Ondemand #########################
+
+# OnDemand Config Directory
+
+/opt/rh/httpd24/root/etc/httpd/conf.d
+
+# ood_portal.yml
+
+/etc/ood/config/ood_portal.yml
+
+# Rebuild ood-portal
+
+sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
+
+# OnDemand Files
+
+/opt/ood
+
+#################### SSSD config ####################
+
+/etc/sssd/sssd.conf
+
+# PAM Files
+
+/etc/pam.d/password-auth
+
+/etc/pam.d/system-auth
+
+#####################################################

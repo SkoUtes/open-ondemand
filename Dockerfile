@@ -17,8 +17,9 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
 
-# Copy in the wrapper scripts
+# Copy in the script and filesystem-map
 COPY ruby-node.sh /root
+COPY filesystem.txt /root
 WORKDIR /root
 RUN chmod +x ruby-node.sh
 
