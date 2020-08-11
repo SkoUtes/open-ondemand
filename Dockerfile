@@ -45,6 +45,8 @@ RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 # FIX: Contains secret values
 ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
+# Some security precautions
+RUN chmod 600 /etc/ood/config/ood_portal.yml
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
