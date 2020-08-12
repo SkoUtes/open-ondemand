@@ -46,9 +46,12 @@ RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Some security precautions
+RUN groupadd -r watcher && useradd -r -s /bin/false -g watcher watcher && mkdir /home/watcher
+RUN chown watcher:watcher /home/watcher
 RUN chmod 600 /etc/ood/config/ood_portal.yml
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 ADD supervisord.conf /etc/supervisord.conf
+USER watcher
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
