@@ -34,7 +34,7 @@ RUN chmod +x ruby-node.sh
 RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
-RUN sudo yum install ondemand-selinux -y
+RUN yum install ondemand-selinux -y
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
