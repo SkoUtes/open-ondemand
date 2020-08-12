@@ -5,14 +5,14 @@
     # Default: (see below, uses basic auth with an htpasswd file)
     auth:
       - 'AuthType openid-connect'
-      - 'AuthName "private"'
-      - 'AuthBasicProvider ldap'
-      - 'AuthLDAPURL "ldaps://ldap.ad.utah.edu:636/ou=People,dc=ad,dc=utah,dc=edu?sAMAccountName" SSL'
-      - 'AuthLDAPGroupAttribute cn'
-      - 'AuthLDAPGroupAttributeIsDN off'
-      - 'AuthLDAPBindDN "cn=slateondemand,ou=Users,ou=CHPC,ou=Department OUs,dc=ad,dc=utah,dc=edu"'
-      - 'AuthLDAPBindPassword no-way-josé'
-      - 'RequestHeader unset Authorization'
+#      - 'AuthName "private"'
+#      - 'AuthBasicProvider ldap'
+#      - 'AuthLDAPURL "ldaps://ldap.ad.utah.edu:636/ou=People,dc=ad,dc=utah,dc=edu?sAMAccountName" SSL'
+#      - 'AuthLDAPGroupAttribute cn'
+#      - 'AuthLDAPGroupAttributeIsDN off'
+#      - 'AuthLDAPBindDN "cn=slateondemand,ou=Users,ou=CHPC,ou=Department OUs,dc=ad,dc=utah,dc=edu"'
+#      - 'AuthLDAPBindPassword no-way-josé'
+#      - 'RequestHeader unset Authorization'
       - 'Require valid-user'
     
     # Redirect user to the following URI when accessing logout URI
