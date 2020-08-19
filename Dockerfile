@@ -4,6 +4,7 @@ RUN yum update -y && \
     yum install -y supervisor centos-release-scl subscription-manager openssh-server && \
     yum install -y wget 
 
+# Set up SSSD and edit PAM files
 RUN yum install -y sssd authconfig openldap oddjob-mkhomedir && \
     yum clean all
 COPY sssd.conf /etc/sssd
@@ -17,6 +18,13 @@ COPY PAM-password-auth ./password-auth
 RUN chmod 744 system-auth
 RUN chmod 744 password-auth
 RUN authconfig --update --enablesssd --enablesssdauth --enablemkhomedir
+
+# Install Singularity
+RUN yum install -y singularity
+
+# Add cluster.yaml files
+RUN mkdir /etc/ood/config/clusters.d
+COPY frisco.yml /etc/ood/config/clusters.d/frisco.yml
 
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
@@ -46,8 +54,6 @@ RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Some security precautions
-RUN groupadd -r watcher && useradd -r -s /bin/false -g watcher watcher && mkdir /home/watcher
-RUN chown watcher:watcher /home/watcher
 RUN chmod 600 /etc/ood/config/ood_portal.yml
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
