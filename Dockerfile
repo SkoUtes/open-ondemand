@@ -19,13 +19,6 @@ RUN chmod 744 system-auth
 RUN chmod 744 password-auth
 RUN authconfig --update --enablesssd --enablesssdauth --enablemkhomedir
 
-# Install Singularity
-RUN yum install -y singularity
-
-# Add cluster.yaml files
-RUN mkdir /etc/ood/config/clusters.d
-COPY frisco.yml /etc/ood/config/clusters.d/frisco.yml
-
 # Install Ruby 2.5 and Node.js 10
 RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
@@ -52,6 +45,13 @@ ADD ood_portal.yml /etc/ood/config/ood_portal.yml
 RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 # FIX: Contains secret values
 ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
+
+# Install Singularity
+RUN yum install -y singularity
+
+# Add cluster.yaml files
+RUN mkdir /etc/ood/config/clusters.d
+COPY frisco.yml /etc/ood/config/clusters.d/frisco.yml
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
