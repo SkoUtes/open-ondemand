@@ -53,8 +53,7 @@ RUN sudo yum install -y openssl-devel libuuid-devel libseccomp-devel wget squash
 RUN wget https://dl.google.com/go/go1.15.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
 RUN rm go1.15.linux-amd64.tar.gz
-RUN yum install -y gcc
-RUN CGO_ENABLED=0
+RUN yum install golang -y
 RUN export PATH=$PATH:/usr/local/go/bin && . ~/.bashrc
 RUN go get -d github.com/sylabs/singularity
 RUN export VERSION=3.6.0 && \
