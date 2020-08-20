@@ -53,8 +53,7 @@ RUN sudo yum install -y openssl-devel libuuid-devel libseccomp-devel wget squash
 RUN wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.13.linux-amd64.tar.gz
 RUN rm go1.13.linux-amd64.tar.gz
-RUN echo 'export GOPATH=${HOME}/go' >> ~/.bashrc && \
-    export PATH=$PATH:/usr/local/go/bin
+RUN export PATH=$PATH:/usr/local/go/bin && . ~/.bashrc
 RUN go get -d github.com/sylabs/singularity
 RUN export VERSION=3.6.0 && \
     wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
