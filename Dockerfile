@@ -53,7 +53,7 @@ RUN sudo yum install -y openssl-devel libuuid-devel libseccomp-devel wget squash
 RUN wget https://dl.google.com/go/go1.15.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
 RUN rm go1.15.linux-amd64.tar.gz
-RUN cp /usr/local/go /root/go
+RUN cp -r /usr/local/go /root/go
 RUN yum install golang -y
 RUN echo 'export GOPATH=/usr/local/go' >> ~/.bashrc && \
     echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && \
