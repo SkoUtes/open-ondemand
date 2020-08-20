@@ -50,10 +50,9 @@ ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.
 WORKDIR /usr/local
 RUN sudo yum groupinstall -y 'Development Tools'
 RUN sudo yum install -y openssl-devel libuuid-devel libseccomp-devel wget squashfs-tools cryptsetup
-RUN wget https://dl.google.com/go/go1.15.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
-RUN rm go1.15.linux-amd64.tar.gz
-RUN cp -r /usr/local/go /root/go
+RUN wget https://dl.google.com/go/go1.14.7.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.14.7.linux-amd64.tar.gz
+RUN rm go1.14.7.linux-amd64.tar.gz
 RUN yum install golang -y
 RUN export GOPATH=${HOME}/go&& \
     export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin && \
