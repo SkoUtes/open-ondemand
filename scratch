@@ -128,3 +128,9 @@ scl enable rh-ruby25 rh-nodejs10 bash
 
 
 RUN sed -i 's/.*# We have to re-enable SCL environment, because.*/scl enable rh-ruby25 rh-nodejs10 bash/g' httpd-scl-wrapper
+
+
+
+
+    echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && \
+    source ~/.bashrc
