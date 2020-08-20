@@ -54,7 +54,7 @@ RUN wget https://dl.google.com/go/go1.15.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
 RUN rm go1.15.linux-amd64.tar.gz
 RUN yum install golang -y
-RUN echo 'export GOPATH=${HOME}/go' >> ~/.bashrc && \
+RUN echo 'export GOPATH=/usr/local/go' >> ~/.bashrc && \
     echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && \
     source ~/.bashrc
 RUN go get -d -u github.com/sylabs/singularity
