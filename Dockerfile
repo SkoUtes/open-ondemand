@@ -55,8 +55,8 @@ RUN tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
 RUN rm go1.15.linux-amd64.tar.gz
 RUN cp -r /usr/local/go /root/go
 RUN yum install golang -y
-RUN echo 'export GOPATH=/root/go' >> ~/.bashrc && \
-    echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && \
+RUN export GOPATH=${HOME}/go&& \
+    export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin && \
     source ~/.bashrc
 RUN go get -d -u github.com/sylabs/singularity
 RUN export VERSION=3.6.0 && \
