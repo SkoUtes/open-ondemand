@@ -69,6 +69,7 @@ RUN yum install -y singularity
 # Add cluster.yaml files
 RUN mkdir /etc/ood/config/clusters.d
 COPY frisco.yml /etc/ood/config/clusters.d/frisco.yml
+WORKDIR /root
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
