@@ -47,6 +47,23 @@ RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 ADD auth_openidc-sample.conf /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Install Singularity
+WORKDIR /usr/local
+RUN sudo yum groupinstall -y 'Development Tools'
+RUN sudo yum install -y openssl-devel libuuid-devel libseccomp-devel wget squashfs-tools cryptsetup
+RUN export VERSION=1.13.5 OS=linux ARCH=amd64 && \
+    wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz && \
+    sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz && \
+    rm go$VERSION.$OS-$ARCH.tar.gz
+RUN echo 'export GOPATH=${HOME}/go' >> ~/.bashrc && \
+    echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && \
+    source ~/.bashrc
+RUN export VERSION=3.6.0 && # adjust this as necessary \
+    wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
+    tar -xzf singularity-${VERSION}.tar.gz
+WORKDIR /usr/local/singularity
+RUN ./mconfig && \
+    make -C ./builddir && \
+    sudo make -C ./builddir install
 RUN yum install -y singularity
 
 # Add cluster.yaml files
