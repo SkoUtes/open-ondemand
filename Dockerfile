@@ -60,6 +60,7 @@ RUN export VERSION=3.6.0 && \
     wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
     tar -xzf singularity-${VERSION}.tar.gz
 WORKDIR /usr/local/singularity
+RUN yum update -y && yum clean all
 RUN ./mconfig && \
     make -C ./builddir && \
     sudo make -C ./builddir install
