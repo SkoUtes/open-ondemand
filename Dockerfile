@@ -56,7 +56,7 @@ RUN rm go1.13.linux-amd64.tar.gz
 RUN echo 'export GOPATH=${HOME}/go' >> ~/.bashrc && \
     echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && \
     source ~/.bashrc
-RUN export VERSION=3.6.0 && # adjust this as necessary \
+RUN export VERSION=3.6.0 && \
     wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
     tar -xzf singularity-${VERSION}.tar.gz
 WORKDIR /usr/local/singularity
