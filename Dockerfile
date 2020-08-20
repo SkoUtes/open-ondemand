@@ -57,7 +57,7 @@ RUN yum install golang -y
 RUN export GOPATH=${HOME}/go&& \
     export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin && \
     source ~/.bashrc
-RUN go get -d -u github.com/sylabs/singularity
+RUN go get -d -v github.com/sylabs/singularity
 RUN export VERSION=3.6.0 && \
     wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
     tar -xzf singularity-${VERSION}.tar.gz
