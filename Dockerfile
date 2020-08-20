@@ -55,7 +55,7 @@ RUN tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
 RUN rm go1.15.linux-amd64.tar.gz
 RUN yum install golang -y
 RUN export PATH=$PATH:/usr/local/go/bin && . ~/.bashrc
-RUN go get -d github.com/sylabs/singularity
+RUN go get -d -u github.com/sylabs/singularity
 RUN export VERSION=3.6.0 && \
     wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
     tar -xzf singularity-${VERSION}.tar.gz
