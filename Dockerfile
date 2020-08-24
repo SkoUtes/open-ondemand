@@ -67,7 +67,7 @@ RUN ./mconfig && \
     sudo make -C ./builddir install
 RUN yum install -y singularity
 
-Add cluster.yaml files
+# Add cluster.yaml files
 RUN mkdir /etc/ood/config/clusters.d
 COPY frisco.yml /etc/ood/config/clusters.d/frisco.yml
 WORKDIR /root
