@@ -8,16 +8,9 @@ v2:
      host: "frisco1.chpc.utah.edu"
    job:
      adapter: "linux_host"
-     submit_host: "frisco1.chpc.utah.edu"  # This is the head for a login round robin
+     submit_host: "localhost:22"  # This is the head for a login round robin
      ssh_hosts: # These are the actual login nodes
-       - frisco1
-       - frisco2
-       - frisco3
-       - frisco4
-       - frisco5
-       - frisco6
-       - frisco7
-       - frisco8
+       - ood-island
      site_timeout: 7200
      debug: true
      singularity_bin: /bin/singularity
