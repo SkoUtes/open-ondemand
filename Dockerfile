@@ -32,7 +32,7 @@ WORKDIR /root
 RUN chmod +x ruby-node.sh
 
 # Install OnDemand
-RUN yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm && \
+RUN yum install -y https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.noarch.rpm && \
     yum install -y ondemand && \
     yum clean all
 RUN yum install ondemand-selinux -y
