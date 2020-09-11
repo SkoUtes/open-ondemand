@@ -1,9 +1,9 @@
 ---
 v2:
    metadata:
-     title: "Frisco"
-     url: "https://www.chpc.utah.edu/documentation/guides/frisco-nodes.php"
-     hidden: false
+     title: "Open-OnDemand"
+     #url: "https://www.chpc.utah.edu/documentation/guides/frisco-nodes.php"
+     #hidden: false
    login:
      host: "frisco1.chpc.utah.edu"
    job:

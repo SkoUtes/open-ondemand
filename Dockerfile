@@ -69,7 +69,7 @@ RUN yum install -y singularity
 
 # Add cluster.yaml files
 RUN mkdir /etc/ood/config/clusters.d
-COPY frisco.yml /etc/ood/config/clusters.d/frisco.yml
+COPY ood-island.yml /etc/ood/config/clusters.d/ood-island.yml
 RUN mkdir /opt/ood/linuxhost_adapter
 WORKDIR /opt/ood/linuxhost_adapter
 RUN singularity pull docker://centos:7.6.1810
