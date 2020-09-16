@@ -82,7 +82,6 @@ RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN groupadd ood
 RUN useradd -g ood ood
-USER ood
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
