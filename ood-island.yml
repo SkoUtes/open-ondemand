@@ -5,10 +5,10 @@ v2:
      #url: "https://www.chpc.utah.edu/documentation/guides/frisco-nodes.php"
      #hidden: false
    login:
-     host: "https://ood-island.utah-dev.slateci.net"
+     host: "10.96.188.84"
    job:
      adapter: "linux_host"
-     submit_host: "ood-island.utah-dev.slateci.net"  # This is the head for a login round robin
+     submit_host: "10.96.188.84"  # This is the head for a login round robin
      ssh_hosts: # These are the actual login nodes
        - ood-island
      site_timeout: 7200
