@@ -81,7 +81,7 @@ RUN chmod 600 /etc/ood/config/ood_portal.yml
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN groupadd ood
-RUN useradd -d /home/ood -g ood -k /etc/skel -m ood
+RUN useradd -d /home/ood -g ood ood
 USER ood
 
 ADD supervisord.conf /etc/supervisord.conf
