@@ -79,8 +79,6 @@ RUN mv centos_7.6.1810.sif centos_7.6.sif
 RUN mkdir /etc/ood/config/apps
 RUN mkdir /etc/ood/config/apps/shell
 COPY env /etc/ood/config/apps/shell/env
-WORKDIR /var/www/ood/apps/shell
-RUN scl enable ondemand -- ./bin/setup
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
