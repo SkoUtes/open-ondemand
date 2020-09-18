@@ -23,6 +23,7 @@ RUN authconfig --update --enablesssd --enablesssdauth --enablemkhomedir
 RUN yum install -y centos-release-scl-rh
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
+RUN yum install -y rh-git29
 RUN yum install -y rh-nodejs10
 
 # Copy in the script and filesystem-map
