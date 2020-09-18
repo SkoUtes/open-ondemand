@@ -78,6 +78,8 @@ WORKDIR /root
 
 # Set up Shell App
 RUN mkdir /etc/ood/config/apps
+RUN mkdir /etc/ood/config/apps/shell
+COPY env /etc/ood/config/apps/shell/env
 RUN scl enable ondemand -- /var/www/ood/sys/apps/shell/bin/setup
 
 # Some security precautions
