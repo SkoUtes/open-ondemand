@@ -25,11 +25,9 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum install -y rh-ruby25
 RUN yum install -y rh-nodejs10
 
-# Copy in the script and filesystem-map
-COPY ruby-node.sh /root
+# Copy in the filesystem-map
 COPY filesystem.txt /root
 WORKDIR /root
-RUN chmod +x ruby-node.sh
 
 # Install OnDemand
 RUN yum install -y https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.noarch.rpm && \
