@@ -7,14 +7,14 @@ RUN yum update -y && \
 # Set up SSSD and edit PAM files
 RUN yum install -y sssd authconfig openldap oddjob-mkhomedir && \
     yum clean all
-COPY sssd.conf /etc/sssd
+COPY sssd/sssd.conf /etc/sssd
 RUN chown root:root /etc/sssd/sssd.conf
 RUN chmod 600 /etc/sssd/sssd.conf
 WORKDIR /etc/pam.d
 RUN rm -f system-auth \
     rm -f password-auth
-COPY PAM-system-auth ./system-auth
-COPY PAM-password-auth ./password-auth
+COPY sssd/PAM-system-auth ./system-auth
+COPY sssd/PAM-password-auth ./password-auth
 RUN chmod 744 system-auth
 RUN chmod 744 password-auth
 RUN authconfig --update --enablesssd --enablesssdauth --enablemkhomedir
