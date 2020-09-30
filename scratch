@@ -1,3 +1,12 @@
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N ""
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -q -N ""
+RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -q -N ""
+RUN ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -q -N ""
+
+
+
+
+
 # RUN yum install -y centos-release-scl-rh
 # RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 # RUN yum install -y rh-ruby25
@@ -134,3 +143,6 @@ RUN sed -i 's/.*# We have to re-enable SCL environment, because.*/scl enable rh-
 
     echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc && \
     source ~/.bashrc
+
+
+
