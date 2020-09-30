@@ -82,6 +82,10 @@ COPY env /etc/ood/config/apps/shell/env
 WORKDIR /etc/ssh
 RUN rm ssh_config
 COPY ssh_config ./ssh_config
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N ""
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -q -N ""
+RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -q -N ""
+RUN ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -q -N ""
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
@@ -90,7 +94,6 @@ RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN groupadd ood
 RUN useradd -g ood ood
 WORKDIR /home/ood
-USER ood
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
