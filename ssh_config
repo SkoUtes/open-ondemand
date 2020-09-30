@@ -24,6 +24,7 @@
 #   RSAAuthentication yes
 #   PasswordAuthentication yes
    HostbasedAuthentication yes
+   EnableSSHKeysign yes
 #   GSSAPIAuthentication no
 #   GSSAPIDelegateCredentials no
 #   GSSAPIKeyExchange no
