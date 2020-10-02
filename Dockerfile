@@ -82,10 +82,6 @@ COPY env /etc/ood/config/apps/shell/env
 WORKDIR /etc/ssh
 RUN rm ssh_config
 COPY ssh_config ./ssh_config
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N ""
-RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -q -N ""
-RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -q -N ""
-RUN ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -q -N ""
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
