@@ -1,7 +1,7 @@
 FROM centos:7
 RUN yum update -y && \
     yum install -y epel-release && \
-    yum install -y supervisor centos-release-scl subscription-manager openssh-server && \
+    yum install -y supervisor centos-release-scl subscription-manager openssh-server openssh-clients && \
     yum install -y wget 
 
 # Set up SSSD and edit PAM files
@@ -82,6 +82,8 @@ COPY env /etc/ood/config/apps/shell/env
 WORKDIR /etc/ssh
 RUN rm ssh_config
 COPY ssh_config ./ssh_config
+COPY startup.sh /root/startup.sh
+RUN chmod 0700 /root/startup.sh
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
