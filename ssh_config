@@ -22,7 +22,7 @@
 #   ForwardX11 no
 #   RhostsRSAAuthentication no
 #   RSAAuthentication yes
-#   PasswordAuthentication yes
+   PasswordAuthentication no
    HostbasedAuthentication yes
    EnableSSHKeysign yes
 #   GSSAPIAuthentication no
