@@ -8,6 +8,6 @@ echo -n "open-ondemand""," ; printenv -0 KC_OOD_OPEN_ONDEMAND_SERVICE_HOST && ca
 echo -n "open-ondemand""," ; printenv -0 KC_OOD_OPEN_ONDEMAND_SERVICE_HOST && cat /etc/ssh/ssh_host_ecdsa_key.pub >> /etc/ssh/ssh_known_hosts
 echo -n "open-ondemand""," ; printenv -0 KC_OOD_OPEN_ONDEMAND_SERVICE_HOST && cat /etc/ssh/ssh_host_ed25519_key.pub >> /etc/ssh/ssh_known_hosts
 echo -n "open-ondemand""," ; printenv -0 KC_OOD_OPEN_ONDEMAND_SERVICE_HOST && cat /etc/ssh/ssh_host_rsa_key.pub >> /etc/ssh/ssh_known_hosts
-ssh-keyscan $KC_OOD_OPEN_ONDEMAND_ISLAND_SERVICE_HOST >> /etc/ssh/ssh_known_hosts
 sleep 120
+ssh-keyscan $KC_OOD_OPEN_ONDEMAND_ISLAND_SERVICE_HOST >> /etc/ssh/ssh_known_hosts
 supervisorctl stop sshd
