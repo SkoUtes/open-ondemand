@@ -82,7 +82,8 @@ COPY env /etc/ood/config/apps/shell/env
 WORKDIR /etc/ssh
 RUN rm ssh_config
 COPY ssh_config ./ssh_config
-COPY keygen.sh /etc/ssh/keygen.sh
+COPY keygen.sh ./keygen.sh
+RUN chmod 0744 keygen.sh
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
