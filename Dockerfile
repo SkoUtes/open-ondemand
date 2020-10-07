@@ -83,6 +83,8 @@ WORKDIR /etc/ssh
 RUN rm ssh_config
 COPY ssh_config ./ssh_config
 COPY keygen.sh ./keygen.sh
+COPY startup.sh /root/startup.sh
+RUN chmod 0744 /root/startup.sh
 RUN chmod 0744 keygen.sh
 
 # Some security precautions
