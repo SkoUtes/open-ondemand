@@ -80,8 +80,9 @@ COPY env /etc/ood/config/apps/shell/env
 
 # Configure SSH between pods
 WORKDIR /etc/ssh
-RUN rm ssh_config
+RUN rm ssh_config sshd_config
 COPY ssh_config ./ssh_config
+COPY sshd_config ./sshd_config
 COPY keygen.sh ./keygen.sh
 COPY startup.sh /root/startup.sh
 RUN chmod 0744 /root/startup.sh
