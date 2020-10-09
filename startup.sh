@@ -16,6 +16,9 @@ cat /etc/ssh/ssh_host_rsa_key.pub ;} >> /etc/ssh/ssh_known_hosts
 
 ## Print out ondemand container Service IP and public keys into ssh_known_hosts file
 { echo -n "ondemand-island," && \
+ssh-keyscan -t dsa 2> /dev/null \
+$(printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST")) ;} >> /etc/ssh/ssh_known_hosts
+{ echo -n "ondemand-island," && \
 ssh-keyscan -t ecdsa 2> /dev/null \
 $(printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST")) ;} >> /etc/ssh/ssh_known_hosts
 { echo -n "ondemand-island," && \
