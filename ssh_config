@@ -25,7 +25,7 @@
    PasswordAuthentication no
    HostbasedAuthentication yes
    EnableSSHKeysign yes
-   PubkeyAcceptedKeyTypes=+ssh-dss
+   PubkeyAcceptedKeyTypes +ssh-dss
 #   GSSAPIAuthentication no
 #   GSSAPIDelegateCredentials no
 #   GSSAPIKeyExchange no
