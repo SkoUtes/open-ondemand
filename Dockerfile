@@ -81,6 +81,7 @@ COPY env /etc/ood/config/apps/shell/env
 # Configure SSH between pods
 WORKDIR /etc/ssh
 RUN rm ssh_config sshd_config
+RUN rm /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_dsa_key.pub
 COPY ssh_config ./ssh_config
 COPY sshd_config ./sshd_config
 COPY keygen.sh ./keygen.sh
