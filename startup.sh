@@ -2,9 +2,9 @@
 sleep 60
 ## Print out Pod IPs and node names into the /etc/hosts file
 { printenv -0 $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST") && \
-echo -n "  ood-island" ;} >> /etc/hosts
+echo " ood-island" ;} >> /etc/hosts
 { printenv -0 $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_CLUSTER_IP_SERVICE_HOST") && \
-echo -n "  open-ondemand" ;} >> /etc/hosts
+echo " open-ondemand" ;} >> /etc/hosts
 
 ## Print out ondemand container Service IP and public keys into ssh_known_hosts file
 { echo -n "ondemand-island," && \
