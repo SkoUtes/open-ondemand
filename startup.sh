@@ -36,5 +36,5 @@ printenv -0 $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && 
 cat /etc/ssh/ssh_host_rsa_key.pub ;} >> /etc/ssh/ssh_known_hosts
 
 ## Disable SSHD
-sleep 60
-supervisorctl stop sshd
+# sleep 60
+# supervisorctl stop sshd
