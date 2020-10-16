@@ -9,10 +9,10 @@ echo -n " " && echo "$INSTANCE_NAME" "-cluster-ip" | tr -d ' ' ;} >> /etc/hosts
 ## Create shosts.equiv file
 touch /etc/shosts.equiv
 # { echo "ood-island" ;} >> /etc/shosts.equiv
-{ echo "$INSTANCE_NAME" "-island +" | tr -d ' ' \ 
+{ echo "$INSTANCE_NAME" "-island +" | tr -d ' ' && \ 
 printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST") ;} >> /etc/shosts.equiv
 # { echo "open-ondemand" :} >> /etc/shosts.equiv
-{ echo "$INSTANCE_NAME" "-cluster-ip +" | tr -d ' ' \ 
+{ echo "$INSTANCE_NAME" "-cluster-ip +" | tr -d ' ' && \ 
 printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_CLUSTER_IP_SERVICE_HOST") ;} >> /etc/shosts.equiv
 
 ## Print out ondemand container Service IP and public keys into ssh_known_hosts file
