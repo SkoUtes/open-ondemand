@@ -2,9 +2,9 @@
 sleep 60
 ## Print out Pod IPs and node names into the /etc/hosts file
 { printenv -0 $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST") && \
-echo " " "$INSTANCE_NAME" "-island" | tr -d ' ' ;} >> /etc/hosts
+echo -n " " && echo "$INSTANCE_NAME" "-island" | tr -d ' ' ;} >> /etc/hosts
 { printenv -0 $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_CLUSTER_IP_SERVICE_HOST") && \
-echo " " "$INSTANCE_NAME" "-cluster-ip" | tr -d ' ' ;} >> /etc/hosts
+echo -n " " && echo "$INSTANCE_NAME" "-cluster-ip" | tr -d ' ' ;} >> /etc/hosts
 
 ## Create shosts.equiv file
 touch /etc/shosts.equiv
