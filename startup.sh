@@ -16,13 +16,13 @@ printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && ech
 printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_CLUSTER_IP_SERVICE_HOST") ;} >> /etc/shosts.equiv
 
 ## Print out ondemand container Service IP and public keys into ssh_known_hosts file
-{ echo -n "$INSTANCE_NAME" "-island," | tr -d ' ' && \
+{ echo -n "$INSTANCE_NAME-island," && \
 ssh-keyscan -t ecdsa 2> /dev/null \
 $(printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST")) ;} >> /etc/ssh/ssh_known_hosts
-{ echo -n "$INSTANCE_NAME" "-island," | tr -d ' ' && \
+{ echo -n "$INSTANCE_NAME-island," && \
 ssh-keyscan -t ed25519 2> /dev/null \
 $(printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST")) ;} >> /etc/ssh/ssh_known_hosts
-{ echo -n "$INSTANCE_NAME" "-island," | tr -d ' ' && \
+{ echo -n "$INSTANCE_NAME-island," && \
 ssh-keyscan -t rsa 2> /dev/null \
 $(printenv $(echo -n "$INSTANCE_NAME" | tr [:lower:] [:upper:] | tr '-' '_' && echo -n "_ISLAND_SERVICE_HOST")) ;} >> /etc/ssh/ssh_known_hosts
 
