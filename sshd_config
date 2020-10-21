@@ -22,6 +22,7 @@
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_dsa_key
 
 # Ciphers and keying
 #RekeyLimit default none
@@ -134,3 +135,5 @@ Subsystem       sftp    /usr/libexec/openssh/sftp-server
 #       AllowTcpForwarding no
 #       PermitTTY no
 #       ForceCommand cvs server
+
+PubkeyAcceptedKeyTypes=+ssh-dss
