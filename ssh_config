@@ -27,8 +27,7 @@
    PreferredAuthentications hostbased,publickey,password
    EnableSSHKeysign yes
    EnableSSHKeysign yes
-   PubkeyAcceptedTypes=+ssh-dss
-#   PubkeyAcceptedKeyTypes +ssh-dss
+   PubkeyAcceptedTypes +ssh-dss
 #   GSSAPIAuthentication no
 #   GSSAPIDelegateCredentials no
 #   GSSAPIKeyExchange no
