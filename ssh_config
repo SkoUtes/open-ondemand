@@ -26,7 +26,6 @@
    HostbasedAuthentication yes
    PreferredAuthentications hostbased,publickey,password
    EnableSSHKeysign yes
-   EnableSSHKeysign yes
    HostKeyAlgorithms=+ssh-dss
    PubkeyAcceptedKeyTypes=+ssh-dss
 #   GSSAPIAuthentication no
