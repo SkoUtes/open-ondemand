@@ -79,14 +79,14 @@ RUN mkdir /etc/ood/config/apps/shell
 COPY env /etc/ood/config/apps/shell/env
 
 # Configure SSH between pods
-WORKDIR /etc/ssh
-RUN rm ssh_config sshd_config
-COPY ssh_config ./ssh_config
-COPY sshd_config ./sshd_config
-COPY keygen.sh ./keygen.sh
-COPY startup.sh /root/startup.sh
-RUN chmod 0744 /root/startup.sh
-RUN chmod 0744 /etc/ssh/keygen.sh
+# WORKDIR /etc/ssh
+# RUN rm ssh_config sshd_config
+# COPY ssh_config ./ssh_config
+# COPY sshd_config ./sshd_config
+# COPY keygen.sh ./keygen.sh
+# COPY startup.sh /root/startup.sh
+# RUN chmod 0744 /root/startup.sh
+# RUN chmod 0744 /etc/ssh/keygen.sh
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
