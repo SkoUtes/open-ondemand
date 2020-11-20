@@ -73,10 +73,6 @@ WORKDIR /opt/ood/linuxhost_adapter
 RUN singularity pull docker://centos:7.6.1810
 RUN mv centos_7.6.1810.sif centos_7.6.sif
 
-# Set up Shell App
-RUN mkdir /etc/ood/config/apps
-RUN mkdir /etc/ood/config/apps/shell
-COPY env /etc/ood/config/apps/shell/env
 
 # Configure SSH between pods
 # WORKDIR /etc/ssh
