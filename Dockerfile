@@ -65,7 +65,7 @@ RUN ./mconfig && \
     sudo make -C ./builddir install
 RUN yum install -y singularity
 
-# Add cluster.yaml files
+# Configure shel application
 RUN mkdir /etc/ood/config/clusters.d
 COPY kingspeak.yml /etc/ood/config/clusters.d/kingspeak.yml
 RUN mkdir /opt/ood/linuxhost_adapter
@@ -73,6 +73,8 @@ WORKDIR /opt/ood/linuxhost_adapter
 RUN singularity pull docker://centos:7.6.1810
 RUN mv centos_7.6.1810.sif centos_7.6.sif
 RUN yum update -y
+RUN mkdir /etc/ood/config/apps && mkdir /etc/ood/config/apps/shell
+COPY env /etc/ood/config/apps/shell/env
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
