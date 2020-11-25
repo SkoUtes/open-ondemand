@@ -67,30 +67,17 @@ RUN yum install -y singularity
 
 # Add cluster.yaml files
 RUN mkdir /etc/ood/config/clusters.d
-COPY ood-island.yml /etc/ood/config/clusters.d/ood-island.yml
+COPY kingspeak.yml /etc/ood/config/clusters.d/kingspeak.yml
 RUN mkdir /opt/ood/linuxhost_adapter
 WORKDIR /opt/ood/linuxhost_adapter
 RUN singularity pull docker://centos:7.6.1810
 RUN mv centos_7.6.1810.sif centos_7.6.sif
-
-
-# Configure SSH between pods
-# WORKDIR /etc/ssh
-# RUN rm ssh_config sshd_config
-# COPY ssh_config ./ssh_config
-# COPY sshd_config ./sshd_config
-# COPY keygen.sh ./keygen.sh
-# COPY startup.sh /root/startup.sh
-# RUN chmod 0744 /root/startup.sh
-# RUN chmod 0744 /etc/ssh/keygen.sh
+RUN yum update -y
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
-RUN groupadd ood
-RUN useradd -g ood ood
-WORKDIR /home/ood
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
