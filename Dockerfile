@@ -37,9 +37,7 @@ RUN yum install ondemand-selinux -y
 
 # isntall openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
-# config file for ood-portal-generator
-ADD ood_portal.yml /etc/ood/config/ood_portal.yml
-# Then build and install the new Apache configuration file with
+# Then update the Apache configuration file with
 RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 
 # Install Singularity
