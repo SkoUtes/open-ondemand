@@ -22,12 +22,8 @@
 #   ForwardX11 no
 #   RhostsRSAAuthentication no
 #   RSAAuthentication yes
-   PasswordAuthentication no
-   HostbasedAuthentication yes
-   PreferredAuthentications hostbased
-   EnableSSHKeysign yes
-   HostKeyAlgorithms=+ssh-dss
-   PubkeyAcceptedKeyTypes=+ssh-dss
+#   PasswordAuthentication yes
+#   HostbasedAuthentication no
 #   GSSAPIAuthentication no
 #   GSSAPIDelegateCredentials no
 #   GSSAPIKeyExchange no
