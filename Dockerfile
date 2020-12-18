@@ -72,6 +72,7 @@ RUN yum update -y
 RUN mkdir /etc/ood/config/apps && mkdir /etc/ood/config/apps/shell
 COPY env /etc/ood/config/apps/shell/env
 COPY startup.sh /root/startup.sh
+RUN chmod 0700 /root/startup.sh
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
