@@ -13,4 +13,7 @@ sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
 
 # OnDemand Files
 /opt/ood
+
+## OnDemand Applications
+/var/www/ood
 #####################################################
