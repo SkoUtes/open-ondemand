@@ -6,3 +6,4 @@ cat <<EOF > /etc/ood/config/apps/shell/env
 OOD_SSHHOST_ALLOWLIST=""
 OOD_SHELL_ORIGIN_CHECK="off"
 EOF
+/opt/ood/ood-portal-generator/sbin/update_ood_portal

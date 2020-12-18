@@ -78,6 +78,7 @@ RUN chmod 0700 /root/startup.sh
 RUN chmod 600 /etc/ood/config/ood_portal.yml
 RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
+WORKDIR /root
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
