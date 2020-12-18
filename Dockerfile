@@ -35,9 +35,10 @@ RUN yum install -y https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.n
     yum clean all
 RUN yum install ondemand-selinux -y
 
-# isntall openid auth mod
+# install openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
 # Then update the Apache configuration file with
+COPY ood_portal.yml /etc/ood/config/ood_portal.yml
 RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 
 # Install Singularity
