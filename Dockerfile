@@ -39,7 +39,7 @@ RUN yum install ondemand-selinux -y
 RUN yum install -y httpd24-mod_auth_openidc
 # Then update the Apache configuration file with
 COPY ood_portal.yml /etc/ood/config/ood_portal.yml
-RUN rmdir /opt/rh/httpd24/root/etc/httpd/conf.d && mkdir -Z /opt/rh/httpd24/root/etc/httpd/conf.d
+RUN rm -rf /opt/rh/httpd24/root/etc/httpd/conf.d && mkdir /opt/rh/httpd24/root/etc/httpd/conf.d
 RUN touch /opt/rh/httpd24/root/etc/httpd/conf.d/ood-portal.conf
 RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 
