@@ -39,7 +39,8 @@ RUN yum install ondemand-selinux -y
 RUN yum install -y httpd24-mod_auth_openidc
 # Then update the Apache configuration file with
 COPY ood_portal.yml /etc/ood/config/ood_portal.yml
-RUN mount -o remount,rw /opt/rh/httpd24/root/etc/httpd/conf.d && touch /opt/rh/httpd24/root/etc/httpd/conf.d/ood-portal.conf
+RUN rmdir /opt/rh/httpd24/root/etc/httpd/conf.d && mkdir -Z -m700 /opt/rh/httpd24/root/etc/httpd/conf.d
+RUN touch /opt/rh/httpd24/root/etc/httpd/conf.d/ood-portal.conf
 RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
 
 # Install Singularity
