@@ -41,7 +41,7 @@ RUN yum install -y httpd24-mod_auth_openidc
 COPY ood_portal.yml /etc/ood/config/ood_portal.yml
 RUN rm -rf /opt/rh/httpd24/root/etc/httpd/conf.d && mkdir /opt/rh/httpd24/root/etc/httpd/conf.d
 RUN touch /opt/rh/httpd24/root/etc/httpd/conf.d/ood-portal.conf
-RUN /opt/ood/ood-portal-generator/sbin/update_ood_portal
+RUN sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
 
 # Install Singularity
 WORKDIR /usr/local
@@ -75,13 +75,11 @@ RUN yum update -y
 RUN mkdir /etc/ood/config/apps && mkdir /etc/ood/config/apps/shell
 COPY env /etc/ood/config/apps/shell/env
 COPY startup.sh /root/startup.sh
-RUN chmod 0700 /root/startup.sh
+WORKDIR /root
 
 # Some security precautions
 RUN chmod 600 /etc/ood/config/ood_portal.yml
-RUN chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
-RUN chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
-WORKDIR /root
+RUN chmod 0700 /root/startup.sh
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
