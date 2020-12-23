@@ -39,7 +39,6 @@ RUN yum install ondemand-selinux -y
 RUN yum install -y httpd24-mod_auth_openidc
 # Then update the Apache configuration file with
 RUN rm -rf /opt/rh/httpd24/root/etc/httpd/conf.d && mkdir /opt/rh/httpd24/root/etc/httpd/conf.d
-RUN touch /opt/rh/httpd24/root/etc/httpd/conf.d/ood-portal.conf
 
 # Install Singularity
 WORKDIR /usr/local
