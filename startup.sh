@@ -11,3 +11,4 @@ chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
 sleep 10
 sudo /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.sh
+supervisorctl restart apache
