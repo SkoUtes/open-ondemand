@@ -37,8 +37,6 @@ RUN yum install ondemand-selinux -y
 
 # install openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
-# Then remove the Apache configuration file with
-RUN rm -f /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Install Singularity
 WORKDIR /usr/local
