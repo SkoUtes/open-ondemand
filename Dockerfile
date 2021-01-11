@@ -71,11 +71,11 @@ RUN mv centos_7.6.1810.sif centos_7.6.sif
 RUN yum update -y
 RUN mkdir /etc/ood/config/apps && mkdir /etc/ood/config/apps/shell
 COPY env /etc/ood/config/apps/shell/env
-COPY startup.sh /root/startup.sh
+COPY startup.sh /opt/rh/httpd24/root/etc/httpd/conf.d/startup.sh
 WORKDIR /root
 
 # Some security precautions
-RUN chmod 0700 /root/startup.sh
+RUN chmod 0700 /opt/rh/httpd24/root/etc/httpd/conf.d/startup.sh
 
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/bin/sh", "-c", "/usr/bin/supervisord -c /etc/supervisord.conf"]
