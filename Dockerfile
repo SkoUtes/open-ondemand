@@ -35,8 +35,10 @@ RUN yum install -y https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.n
     yum clean all
 RUN yum install ondemand-selinux -y
 
-# install openid auth mod
+# Install openid auth mod
 RUN yum install -y httpd24-mod_auth_openidc
+# Remove auth_openidc.conf
+RUN rm -f /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Install Singularity
 WORKDIR /usr/local
