@@ -9,8 +9,7 @@ EOF
 sleep 45
 if [[ ! -f /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf ]]
 then
-    printf "
-        OIDCProviderMetadataURL https://$(echo $INSTANCE_NAME).keycloak.$(echo $CLUSTER_DNS)/auth/realms/ondemand/.well-known/openid-configuration\n\
+    printf "        OIDCProviderMetadataURL https://$(echo $INSTANCE_NAME).keycloak.$(echo $CLUSTER_DNS)/auth/realms/ondemand/.well-known/openid-configuration\n\
         OIDCClientID        \"`cat /shared/id`\" \n\
         OIDCClientSecret    \"`cat /shared/client-secret`\"\n\
         OIDCRedirectURI      https://$(echo $INSTANCE_NAME).ondemand.$(echo $CLUSTER_DNS)/oidc\n\
