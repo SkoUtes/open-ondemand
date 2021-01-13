@@ -6,7 +6,7 @@ cat <<EOF > /etc/ood/config/apps/shell/env
 OOD_SSHHOST_ALLOWLIST=""
 OOD_SHELL_ORIGIN_CHECK="off"
 EOF
-sleep 20
+sleep 40
 printf "
     OIDCProviderMetadataURL https://$(echo $INSTANCE_NAME).keycloak.$(echo $CLUSTER_DNS)/auth/realms/ondemand/.well-known/openid-configuration\n\
     OIDCClientID        \"`cat /shared/id`\" \n\
