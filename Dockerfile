@@ -63,7 +63,6 @@ RUN yum install -y singularity
 
 # Configure shel application
 RUN mkdir /etc/ood/config/clusters.d
-COPY kingspeak.yml /etc/ood/config/clusters.d/kingspeak.yml
 RUN mkdir /opt/ood/linuxhost_adapter
 WORKDIR /opt/ood/linuxhost_adapter
 RUN singularity pull docker://centos:7.6.1810
