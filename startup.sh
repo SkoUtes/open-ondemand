@@ -9,10 +9,10 @@ EOF
 sleep 45
 if [[ ! -f /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf ]]
 then
-    printf "OIDCProviderMetadataURL https://$(echo $INSTANCE_NAME).keycloak.$(echo $CLUSTER_DNS)/auth/realms/ondemand/.well-known/openid-configuration\n\
+    printf "OIDCProviderMetadataURL https://$(echo $SLATE_INSTANCE_NAME).keycloak.$(echo $SLATE_CLUSTER_NAME)/auth/realms/ondemand/.well-known/openid-configuration\n\
 OIDCClientID        \"`cat /shared/id`\" \n\
 OIDCClientSecret    \"`cat /shared/client-secret`\"\n\
-OIDCRedirectURI      https://$(echo $INSTANCE_NAME).ondemand.$(echo $CLUSTER_DNS)/oidc\n\
+OIDCRedirectURI      https://$(echo $SLATE_INSTANCE_NAME).ondemand.$(echo $SLATE_CLUSTER_NAME)/oidc\n\
 OIDCCryptoPassphrase 'd14e5b4c8e6257ea81830f23c2be4633ad04d3af9816affdda6d8fec8ea926a000ca47b507587dc5'\n\
 \n\
 $(echo '# Keep sessions alive for 8 hours')\n\
