@@ -40,6 +40,9 @@ RUN yum install -y httpd24-mod_auth_openidc
 # Remove auth_openidc.conf
 RUN rm -f /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
+# Install incron
+RUN yum install incron -y
+
 # Install Singularity
 WORKDIR /usr/local
 RUN sudo yum groupinstall -y 'Development Tools'
