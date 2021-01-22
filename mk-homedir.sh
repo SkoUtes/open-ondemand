@@ -1,3 +1,2 @@
 #!/bin/bash
-mkdir -p $(ls -1 -d */ | tr -d '/' | xargs -L 1 echo /home/ | tr -d ' ')
-ls -d */ | tr -d '/' | sed p | paste - - | xargs -t -L 1 chown
+mkdir -p $(ls -1 -d /var/log/ondemand-nginx/*/ | tr -d '/' | sed 's/\(varlogondemand-nginx\)//g' | xargs -L 1 echo /home/ | tr -d ' ')
