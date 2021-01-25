@@ -45,6 +45,7 @@ RUN yum install incron -y
 COPY mk-homedir.sh /var/log/ondemand-nginx/mk-homedir.sh
 RUN chmod 0711 /var/log/ondemand-nginx/mk-homedir.sh
 COPY incron-mkdir /etc/incron.d/incron-mkdir
+COPY incron.allow /etc/incron.allow
 RUN chmod 0700 /etc/incron.d
 RUN useradd incron-user && chown incron-user /var/log/ondemand-nginx/mk-homedir.sh
 
