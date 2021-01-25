@@ -27,13 +27,13 @@ RUN rm -f /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 
 # Set up incron
 RUN yum install incron -y
-COPY mk-homedir.sh /var/log/ondemand-nginx/mk-homedir.sh
-RUN chmod 0711 /var/log/ondemand-nginx/mk-homedir.sh
+COPY mk-homedir.sh /usr/bin/mk-homedir.sh
+RUN chmod 0711 /usr/bin/mk-homedir.sh
 COPY incron-mkdir /etc/incron.d/incron-mkdir
 COPY incron.allow /etc/incron.allow
 RUN chmod 0700 /etc/incron.d
 RUN useradd incron-user && chown incron-user /var/log/ondemand-nginx/mk-homedir.sh && \
-    chgrp incron-user ondemand-nginx && chmod 0750 /var/log/ondemand-nginx
+    chgrp incron-user ondemand-nginx && chmod 0740 /var/log/ondemand-nginx
 
 # Install Singularity
 WORKDIR /usr/local
