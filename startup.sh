@@ -34,3 +34,4 @@ sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
 supervisorctl restart apache
 sleep 5 
 usermod -a G ondemand-nginx incronuser
+supervisorctl restart incron
