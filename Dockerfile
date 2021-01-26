@@ -32,8 +32,8 @@ RUN chmod 0711 /usr/bin/mk-homedir.sh
 COPY incron-mkdir /etc/incron.d/incron-mkdir
 COPY incron.allow /etc/incron.allow
 RUN chmod 0700 /etc/incron.d
-RUN useradd incron-user && chown incron-user /var/log/ondemand-nginx/mk-homedir.sh && \
-    chgrp incron-user ondemand-nginx && chmod 0740 /var/log/ondemand-nginx
+RUN useradd incronuser && chown incronuser /usr/bin/mk-homedir.sh && \
+    chgrp incronuser ondemand-nginx && chmod 0740 /var/log/ondemand-nginx
 
 # Install Singularity
 WORKDIR /usr/local
