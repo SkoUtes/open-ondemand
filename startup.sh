@@ -1,4 +1,5 @@
 #!/bin/bash
+usermod -a G ondemand-nginx incronuser
 scl enable ondemand /var/www/ood/apps/sys/shell/bin/setup
 mkdir /etc/ood/config/apps /etc/ood/config/apps/shell
 touch /etc/ood/config/apps /etc/ood/config/apps/shell/env
