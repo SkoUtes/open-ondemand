@@ -6,7 +6,7 @@ cat <<EOF > /etc/ood/config/apps/shell/env
 OOD_SSHHOST_ALLOWLIST=""
 OOD_SHELL_ORIGIN_CHECK="off"
 EOF
-sleep 45
+sleep 30
 if [[ ! -f /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf ]]
 then
     printf "OIDCProviderMetadataURL https://$(echo $SLATE_INSTANCE_NAME).keycloak.$(echo $SLATE_CLUSTER_NAME)/auth/realms/ondemand/.well-known/openid-configuration\n\
@@ -32,6 +32,6 @@ chgrp apache /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
 supervisorctl restart apache
-sleep 5 
 usermod -a G ondemand-nginx incronuser
+sleep 10
 supervisorctl restart incron
