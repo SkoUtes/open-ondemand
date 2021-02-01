@@ -41,4 +41,5 @@ supervisorctl restart apache
 usermod -a G ondemand-nginx incronuser
 sleep 10
 supervisorctl restart incron
-#supervisorctl restart sssd
+# Add users from Keycloak API
+cat /shared/users.txt | tr " " "\n" | xargs useradd
