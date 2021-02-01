@@ -42,4 +42,4 @@ usermod -a G ondemand-nginx incronuser
 sleep 10
 supervisorctl restart incron
 # Add users from Keycloak API
-cat /shared/users.txt | tr " " "\n" | xargs useradd
+cat /shared/users.txt | tr " " "\n" | xargs -L 1 useradd
