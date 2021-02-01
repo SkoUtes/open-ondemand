@@ -34,11 +34,11 @@ chmod 640 /opt/rh/httpd24/root/etc/httpd/conf.d/auth_openidc.conf
 sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
 supervisorctl restart apache
 # Set up SSSD
-chown root:root /etc/sssd/sssd.conf
-chmod 0600 /etc/sssd/sssd.conf
-authconfig --update --enablesssd --enablesssdauth --enablemkhomedir
+#chown root:root /etc/sssd/sssd.conf
+#chmod 0600 /etc/sssd/sssd.conf
+#authconfig --update --enablesssd --enablesssdauth --enablemkhomedir
 # Set up incron
 usermod -a G ondemand-nginx incronuser
 sleep 10
 supervisorctl restart incron
-supervisorctl restart sssd
+#supervisorctl restart sssd
