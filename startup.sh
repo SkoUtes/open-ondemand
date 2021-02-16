@@ -42,5 +42,8 @@ usermod -a G ondemand-nginx incronuser
 sleep 10
 supervisorctl restart incron
 # Add users from Keycloak API
-sleep 25
+while [ ! -f /shared/newusers.txt ]
+do
+	sleep 2
+done
 newusers /shared/newusers.txt
